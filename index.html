@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        //window.document
+        jQuery(document).ready(function () {
+            // jQuery("#div1").css({ border: "2px solid red" });
+            // document.getElementById(div1_butto)
+
+            jQuery("#div1_button").on("click", function () {
+                jQuery("#div1").css({ border: "none" });
+            });
+
+            jQuery("#button").on("click", function () {
+                var bordere = jQuery("#wrapper").css("border");
+                if (bordere === "0px none rgb(0, 0, 0)") {
+                    jQuery("#wrapper").css({ border: "2px solid red" });
+                } else {
+                    jQuery("#wrapper").css({ border: "0px none rgb(0, 0, 0)" });
+                }
+
+                alert($("#input_name").val())
+                $("#input_name").val("new value for input");
+            });
+
+            jQuery(".btn").on("click", function () {
+                jQuery("#ajax_loader").show();
+                var val = jQuery(this).attr("id")
+
+                if (val == "div1_button") {
+
+                    jQuery.ajax({
+                        type: "GET",
+                        url: "https://jsonplaceholder.typicode.com/posts",
+                        success: function (res) {
+                            var html = res.map(function (i) {
+                                return "<tr><td>" + i.id + "</td><td>" + i.userId + "</td><td>" + i.title + "</td><td>" + i.body + "</td></tr>";
+                            }).join("");
+                            var headingRow = "<tr><th>ID</th><th>USER ID</th><th>TITLE</th><th>BODY</th></tr>";
+                            // var str = html.join("");
+                            setTimeout(function () {
+                                $("#ajax_table").html(headingRow + html);
+                                jQuery("#ajax_loader").hide();
+                            }, 2000);
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+    <div id="wrapper">
+        <div id="div1" class="inner-div" style="">
+            div1
+            <div> <input type="button" id="div1_button" value="Change my style"></div>
+        </div>
+        <div id="div2" class="inner-div" style="height:200px; width:260px;">
+            div2
+        </div>
+
+        <div> <input type="button" id="button" value="Change Style" /></div>
+
+        <input type="text" id="input_name" value="" />
+        <input type="button" id="div1_button" value="Call Ajax" class="btn">
+        <h3>Ajax Output</h3>
+        <div id="ajax_output">
+            <div id="ajax_loader" style="display: none;">
+                <img src="Loading-Image-1.gif" />
+            </div>
+            <table id="ajax_table">
+
+            </table>
+        </div>
+        <input type="button" id="div2_button" value="-" class="btn">
+        <input type="button" id="div3_button" value="=" class="btn">
+    </div>
+</head>
+
+</html>
