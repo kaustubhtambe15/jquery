@@ -1,0 +1,13 @@
+plugins links
+
+imahe zoom>> https://www.jqueryscript.net/demo/magnify-image-hover
+
+2>>     https://ckeditor.com/ckeditor-4/
+
+3>>	http://fancybox.net/
+
+4>>	https://bxslider.com/options/
+
+5>> 	https://api.jqueryui.com/accordion/#option-animate
+
+6>> 	https://jqueryui.com/accordion/#collapsible
